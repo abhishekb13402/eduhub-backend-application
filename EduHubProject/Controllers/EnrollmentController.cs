@@ -19,6 +19,8 @@ namespace EduHubProject.Controllers
             enrollmentrepository = new EnrollmentRepository(eduHubDB);
         }
 
+
+
         [HttpPost]
         public object? AddEnrollment(Enrollment enrollment)
         {

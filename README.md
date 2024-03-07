@@ -24,3 +24,34 @@ EduHub is an online learning platform that facilitates education through interac
 - **Modules**: `/api/Modules`
 - **Assessment Questions**: `/api/AssessmentQuestions`
 - **Certificates**: `/api/Certificate`
+
+
+## API Testing with Swagger
+
+### Swagger UI Screenshots
+
+
+![Swagger UI - Endpoint 1](/Screenshots/Database_diagram.png)
+**Database Diagram**
+
+
+![Swagger UI - Endpoint 2](/Screenshots/api-1.png)
+**Assessment Questions**
+
+
+![Swagger UI - Endpoint 3](/Screenshots/api-2.png)
+**Certificate and Course**
+
+
+![Swagger UI - Endpoint 4](/Screenshots/api-3.png)
+**Enrollment Module RegisterUser**
+
+
+![Swagger UI - Endpoint 5](/Screenshots/api-4.png)
+**RegisterUser and Result**
+
+
+![Swagger UI - Endpoint 6](/Screenshots/total-api.png)
+**Total APIs**
+
+

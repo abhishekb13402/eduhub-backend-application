@@ -14,6 +14,17 @@ namespace EduHubProject.Repository
             this.eduHubDBContext = eduHubDBContext;
         }
 
+        public bool AuthenticateUser(string Username, string Password)
+        {
+           int rowcount = eduHubDBContext.Users.Where(i => i.UserName == Username && i.UserPassword == Password).Count();
+           if (rowcount == 0)
+                return false;
+            else
+            {
+                return true;
+            }
+        }
+
         public User AddUser(User registerUser)
         {
             if (registerUser == null) throw new ArgumentNullException(nameof(registerUser));

@@ -75,18 +75,21 @@ namespace EduHubProject.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public object AddUser(User registerUser)
         {
             return reguserrepository.AddUser(registerUser);
         }
 
         [HttpPut]
+        [Authorize]
         public object? Updateuser(User registerUser)
         {
             return reguserrepository.UpdateRegisterUser(registerUser);
         }
 
         [HttpDelete]
+        [Authorize]
         public object DeleteUser(int id)
         {
             return reguserrepository.DeleteRegisterUser(id);

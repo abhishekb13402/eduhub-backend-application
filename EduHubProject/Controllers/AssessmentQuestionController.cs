@@ -1,6 +1,7 @@
 ﻿using EduHubProject.Data;
 using EduHubProject.Models;
 using EduHubProject.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,29 +21,34 @@ namespace EduHubProject.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public object? AddAssessmentQuestionsByCourseId(AssessmentQuestions assessmentQuestions)
         {
             return assessmentquestionrepository.AddAssessmentQuestionsByCourseId(assessmentQuestions);
         }
 
+        [Authorize]
         [HttpGet("{cid}")]
         public object? GetAssessmentByCourseId(int cid)
         {
             return assessmentquestionrepository.GetAssessmentByCourseId(cid);
         }
 
+        [Authorize]
         [HttpDelete]
         public object? DeleteAssessmentByCourseId(int cid)
         {
             return assessmentquestionrepository.DeleteAssessmentByCourseId(cid);
         }
 
+        [Authorize]
         [HttpDelete("{qid}")]
         public object? DeleteAssessmentByQId(int qid)
         {
             return assessmentquestionrepository.DeleteAssessmentByQId(qid);
         }
 
+        [Authorize]
         [HttpPut]
         public object? UpdateAssQuestionByQId(AssessmentQuestions assessmentQuestions)
         {

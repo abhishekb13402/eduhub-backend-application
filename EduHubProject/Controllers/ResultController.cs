@@ -1,5 +1,6 @@
 ﻿using EduHubProject.Data;
 using EduHubProject.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace EduHubProject.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public object? GetResultsByFilter(int UCId)
         {
             return resultRepository.GetResultsByFilter(UCId);

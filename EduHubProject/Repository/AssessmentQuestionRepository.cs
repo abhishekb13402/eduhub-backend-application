@@ -1,5 +1,6 @@
 ﻿using EduHubProject.Data;
 using EduHubProject.Models;
+using System.Linq;
 
 namespace EduHubProject.Repository
 {
@@ -20,11 +21,29 @@ namespace EduHubProject.Repository
             return assessmentQuestions;
         }
 
-        public List<AssessmentQuestions> GetAssessmentByCourseId(int id)
+        public object GetAssessmentByCourseName(string cname)
         {
-            var result = eduHubDBContext.AssessmentQuestions
-                .Where(assq => assq.CourseId == id)
-                .ToList();
+            //var result = eduHubDBContext.AssessmentQuestions
+            //    .Where(assq => assq.CourseId == cname)
+            //    .ToList();
+            //return result;
+            var result = (from assq in eduHubDBContext.AssessmentQuestions 
+                          join co in eduHubDBContext.courses
+                          on assq.CourseId equals co.CourseId
+                          where co.CourseName == cname
+                          select new {
+                            QuestionId = assq.QuestionId,
+                            CourseId = assq.CourseId,
+                            CourseName = cname,
+                            QuestionText = assq.QuestionText,
+                            CorrectAns = assq.CorrectAns,
+                            OptA = assq.OptA,
+                            OptB = assq.OptB,
+                            OptC = assq.OptC,
+                            OptD = assq.OptD})
+                            .ToList();
+
+            //var result = eduHubDBContext.AssessmentQuestions.ToList();
             return result;
         }
 

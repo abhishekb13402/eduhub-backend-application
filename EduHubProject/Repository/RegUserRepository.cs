@@ -1,5 +1,6 @@
 ﻿using EduHubProject.Data;
 using EduHubProject.Models;
+using EduHubProject.Models.Dto;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,15 +15,30 @@ namespace EduHubProject.Repository
             this.eduHubDBContext = eduHubDBContext;
         }
 
-        public bool AuthenticateUser(string Username, string Password)
+        public bool AuthenticateUser(string UserEmail, string Password)
         {
-           int rowcount = eduHubDBContext.Users.Where(i => i.UserName == Username && i.UserPassword == Password).Count();
+           int rowcount = eduHubDBContext.Users.Where(i => i.UserEmail == UserEmail && i.UserPassword == Password).Count();
            if (rowcount == 0)
                 return false;
             else
             {
                 return true;
             }
+        }
+
+        public bool LoginApi(AuthenticationDto authenticationDto)
+        {
+
+            int rowcount = eduHubDBContext.Users.Where(i => i.UserEmail == authenticationDto.email && i.UserPassword == authenticationDto.password).Count();
+            if (rowcount == 0)
+                return false;
+            else
+            {
+               return true;
+            }
+
+
+
         }
 
         public User AddUser(User registerUser)

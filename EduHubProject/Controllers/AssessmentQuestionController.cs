@@ -28,10 +28,10 @@ namespace EduHubProject.Controllers
         }
 
         [Authorize]
-        [HttpGet("{cid}")]
-        public object? GetAssessmentByCourseId(int cid)
+        [HttpGet("{cname}")]
+        public object? GetAssessmentByCourseName(string cname)
         {
-            return assessmentquestionrepository.GetAssessmentByCourseId(cid);
+            return assessmentquestionrepository.GetAssessmentByCourseName(cname);
         }
 
         [Authorize]

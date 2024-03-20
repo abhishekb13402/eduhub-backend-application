@@ -1,5 +1,6 @@
 ﻿using EduHubProject.Data;
 using EduHubProject.Models;
+using EduHubProject.Models.Dto;
 using EduHubProject.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,21 @@ namespace EduHubProject.Controllers
             this.configuration = configuration;
         }
 
+        [HttpPost("login")]
+        public object LoginApi(AuthenticationDto authenticationDto)
+        {
+           bool isValid = reguserrepository.LoginApi(authenticationDto);
+            if (isValid)
+            {
+                return generateToken(authenticationDto.email);
+            }
+            else
+            {
+                return new Exception("Invalid user name and password");
+            }
+        }
+
+
         [HttpGet]
         [Authorize]
         public object GetAllUsers()
@@ -40,12 +56,12 @@ namespace EduHubProject.Controllers
         }
 
         [HttpPost("Authentication")]
-        public object AuthenticateUser(string username, string password)
+        public object AuthenticateUser(string useremail, string password)
         {
-            bool isValidUser = reguserrepository.AuthenticateUser(username, password);
+            bool isValidUser = reguserrepository.AuthenticateUser(useremail, password);
             if (isValidUser)
             {
-                return generateToken(username);
+                return generateToken(useremail);
             }
             else
             {
@@ -53,14 +69,14 @@ namespace EduHubProject.Controllers
             }
         }
 
-        private string generateToken(string username)
+        private string generateToken(string useremail)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier,username),
+                new Claim(ClaimTypes.NameIdentifier,useremail),
                 //new Claim(ClaimTypes.Email,user.Email),
 
             };

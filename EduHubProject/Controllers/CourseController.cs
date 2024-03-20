@@ -26,10 +26,10 @@ namespace EduHubProject.Controllers
             return courserepository.GetAllCourse();
         }
 
-        [HttpGet("{CourseName}")]
-        public object? GetCourseByName(string CourseName) 
+        [HttpGet("{CourseID}")]
+        public object? GetCourseByName(int CourseID) 
         {
-            return courserepository.GetCoursByCourseName(CourseName);
+            return courserepository.GetCoursByCourseName(CourseID);
         }
 
         [HttpPost]

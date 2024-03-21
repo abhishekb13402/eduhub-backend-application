@@ -47,6 +47,14 @@ namespace EduHubProject.Repository
             return result;
         }
 
+        public object GetAssessmentQByQid(int questionid)
+        {
+            var result = eduHubDBContext.AssessmentQuestions
+                .Where(assq => assq.QuestionId == questionid)
+                .ToList();
+            return result;
+        }
+
         public bool DeleteAssessmentByCourseId(int cid)
         {
             var userdeleteassq = eduHubDBContext.AssessmentQuestions

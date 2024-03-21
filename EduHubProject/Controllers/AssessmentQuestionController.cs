@@ -35,6 +35,13 @@ namespace EduHubProject.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        public object? GetAssessmentQByQid(int questionid)
+        {
+            return assessmentquestionrepository.GetAssessmentQByQid(questionid);
+        }
+
+        [Authorize]
         [HttpDelete]
         public object? DeleteAssessmentByCourseId(int cid)
         {

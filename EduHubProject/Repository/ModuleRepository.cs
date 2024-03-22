@@ -22,30 +22,68 @@ namespace EduHubProject.Repository
             return module;
         }
 
-        public List<CourseModuleDto> GetModuleByCourseId(int id)
+        public object GetModuleByModuleid(int moduleid)
         {
-            //select course.courseName, module.ModuleId, module.ModuleName, module.Content
-            //from course
-            //inner join Module
-            //on course.courseId = module.courseId;
+            var result = eduHubDBContext.Modules
+                .Where(m => m.ModuleId == moduleid)
+                .ToList();
+            return result;
+        }
 
+        //public object GetModuleByCourseName(string courseName)
+        //{
+        //    var result = eduHubDBContext.Modules
+        //        .Where(m => m.cou == courseName)
+        //        .ToList();
+        //    return result;
+        //}
+
+        public List<CourseModuleDto> GetModuleByCourseName(string courseName)
+        {
             var result = (from c in eduHubDBContext.courses
-                         join m in eduHubDBContext.Modules
-                         on c.CourseId equals m.CourseId
-                         where c.CourseId == id
-                         select new CourseModuleDto 
-                         { 
-                             CourseName = c.CourseName,
-                             ModuleId =  m.ModuleId,
-                             ModuleName = m.ModuleName,
-                             CourseId = id,
-                             Content = m.Content })
-                            //.Include(x => x.modules)
+                          join m in eduHubDBContext.Modules
+                          on c.CourseId equals m.CourseId
+                          where c.CourseName == courseName
+                          select new CourseModuleDto
+                          {
+                              CourseName = courseName,
+                              ModuleId = m.ModuleId,
+                              ModuleName = m.ModuleName,
+                              CourseId = c.CourseId,
+                              Content = m.Content
+                          })
                          .ToList();
-           
+
             return result;
 
         }
+
+        //-------------------------------------------------------------
+
+        //public List<CourseModuleDto> GetModuleByCourseId(int id)
+        //{
+        //    //select course.courseName, module.ModuleId, module.ModuleName, module.Content
+        //    //from course
+        //    //inner join Module
+        //    //on course.courseId = module.courseId;
+
+        //    var result = (from c in eduHubDBContext.courses
+        //                 join m in eduHubDBContext.Modules
+        //                 on c.CourseId equals m.CourseId
+        //                 where c.CourseId == id
+        //                 select new CourseModuleDto 
+        //                 { 
+        //                     CourseName = c.CourseName,
+        //                     ModuleId =  m.ModuleId,
+        //                     ModuleName = m.ModuleName,
+        //                     CourseId = id,
+        //                     Content = m.Content })
+        //                    //.Include(x => x.modules)
+        //                 .ToList();
+           
+        //    return result;
+
+        //}
 
         public bool DeleteModuleById(int id) 
         { 

@@ -32,9 +32,9 @@ namespace EduHubProject.Controllers
 
         [Authorize]
         [HttpGet]
-        public object? GetEnrollmentByCourseId(int cid)
+        public object? GetEnrollmentByCourseName(string Coursename)
         {
-            return enrollmentrepository.GetEnrollmentByCourseId(cid);
+            return enrollmentrepository.GetEnrollmentByCourseName(Coursename);
         }
 
         [Authorize]

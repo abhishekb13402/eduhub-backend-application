@@ -23,16 +23,30 @@ namespace EduHubProject.Controllers
 
         [HttpPost]
         [Authorize]
-        public object? AddModule(Module module)
+        public object? AddModule(Module addmodule)
         {
-            return moduleRepository.AddModule(module);
+            return moduleRepository.AddModule(addmodule);
+        }
+
+        //[Authorize]
+        //[HttpGet("{Courseid}")]
+        //public object? GetModuleByCourseId(int Courseid)
+        //{
+        //    return moduleRepository.GetModuleByCourseId(Courseid);
+        //}
+
+        [Authorize]
+        [HttpGet("{CourseName}")]
+        public object? GetModuleByCourseName(string CourseName)
+        {
+            return moduleRepository.GetModuleByCourseName(CourseName);
         }
 
         [Authorize]
-        [HttpGet("{Courseid}")]
-        public object? GetModuleByCourseId(int Courseid)
+        [HttpGet]
+        public object? GetModuleByModuleid(int moduleid)
         {
-            return moduleRepository.GetModuleByCourseId(Courseid);
+            return moduleRepository.GetModuleByModuleid(moduleid);
         }
 
         [Authorize]

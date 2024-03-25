@@ -27,9 +27,15 @@ namespace EduHubProject.Controllers
         }
 
         [HttpGet("{CourseID}")]
-        public object? GetCourseByName(int CourseID) 
+        public object? GetCourseByCourseId(int CourseID) 
         {
-            return courserepository.GetCoursByCourseName(CourseID);
+            return courserepository.GetCourseByCourseId(CourseID);
+        }
+
+        [HttpGet("CourseName")]
+        public object? GetCourseByCourseName(string CourseName)
+        {
+            return courserepository.GetCourseByCourseName(CourseName);
         }
 
         [HttpPost]

@@ -31,10 +31,16 @@ namespace EduHubProject.Repository
                 .ToList();
         }
 
-        public Course? GetCoursByCourseName(int CourseID)
+        public Course? GetCourseByCourseId(int CourseID)
         {
             //return eduHubDBContext.courses.FirstOrDefault(i => i.CourseName == courseName);
             return eduHubDBContext.courses.FirstOrDefault(i => i.CourseId == CourseID);
+        }
+
+        public Course? GetCourseByCourseName(string CourseName)
+        {
+            //return eduHubDBContext.courses.FirstOrDefault(i => i.CourseName == courseName);
+            return eduHubDBContext.courses.FirstOrDefault(i => i.CourseName == CourseName);
         }
 
         public bool DeleteCourseById(int id) 
